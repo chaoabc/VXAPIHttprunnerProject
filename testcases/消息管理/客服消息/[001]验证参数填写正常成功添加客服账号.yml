@@ -1,0 +1,11 @@
+- config:
+    name: '[001]验证参数填写正常成功添加客服账号'
+- test:
+    name: '执行 添加客服账号'
+    api: 'api/消息管理/客服消息/添加客服账号.yml'
+    variables:
+      - kf_account: 'test1@test'
+      - nickname: '客服01'
+      - password: 'pswmd5'
+    validate:
+      - eq: [content.expires_in,7200]

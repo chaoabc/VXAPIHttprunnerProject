@@ -1,0 +1,11 @@
+name: '编辑标签'
+base_url: ${ENV(URL)}
+request:
+  url: '/cgi-bin/tags/update'
+  method: 'POST'
+  params:
+    access_token: $token_id
+  json:
+    {   "tag" : {"id" : $tag_id,"name" : $tag_name} }
+validate:
+  - eq: ['errmsg','ok']

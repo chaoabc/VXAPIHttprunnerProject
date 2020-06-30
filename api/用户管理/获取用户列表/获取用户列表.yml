@@ -1,0 +1,10 @@
+name: '获取用户列表'
+base_url: ${ENV(URL)}
+request:
+  url: '/cgi-bin/user/get'
+  method: 'GET'
+  params:
+    access_token: $token_id,
+    next_openid: $next_openid
+validate:
+  - eq: ['status_code',200]

@@ -1,0 +1,11 @@
+name: '创建标签'
+base_url: ${ENV(URL)}
+request:
+  url: '/cgi-bin/tags/create'
+  method: 'POST'
+  params:
+    access_token: $token_id
+  json:
+    {"tag": { "name": $tag_name }}
+validate:
+  - eq: ['status_code',200]

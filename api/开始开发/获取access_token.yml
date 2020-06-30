@@ -1,0 +1,11 @@
+name: '获取access_token'
+base_url: ${ENV(URL)}
+request:
+  url: 'cgi-bin/token'
+  method: 'GET'
+  params:
+    grant_type: 'client_credential'
+    appid: $appid
+    secret: $secret
+validate:
+  - eq: ['status_code',200]

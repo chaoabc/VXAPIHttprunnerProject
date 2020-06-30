@@ -1,0 +1,15 @@
+name: '添加客服帐号'
+base_url: ${ENV(URL)}
+request:
+  url: '/customservice/kfaccount/add'
+  method: 'POST'
+  params:
+    access_token: $token_id
+  json:
+    {
+      "kf_account": $kf_account,
+      "nickname": $nickname,
+      "password": $password
+    }
+validate:
+  - eq: ['status_code',200]

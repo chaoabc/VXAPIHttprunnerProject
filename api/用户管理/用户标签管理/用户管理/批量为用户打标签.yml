@@ -1,0 +1,16 @@
+name: '批量为用户打标签'
+base_url: ${ENV(URL)}
+request:
+  url: '/cgi-bin/tags/members/batchtagging'
+  method: 'POST'
+  params:
+    access_token: $token_id
+  json:
+    {
+      "openid_list": [
+                      $openid_01,
+                      $$openid_02   ],
+      "tagid": $tag_id
+    }
+validate:
+  - eq: ['status_code',200]

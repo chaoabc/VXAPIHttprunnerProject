@@ -1,0 +1,11 @@
+name: '删除标签'
+base_url: ${ENV(URL)}
+request:
+  url: '/cgi-bin/tags/delete'
+  method: 'POST'
+  params:
+    access_token: $token_id
+  json:
+    {   "tag":{  "id" : $tag_id } }
+validate:
+  - eq: ['status_code',200]

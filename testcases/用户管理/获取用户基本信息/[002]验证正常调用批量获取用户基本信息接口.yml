@@ -1,0 +1,31 @@
+- config:
+    name: '[002]验证正常调用批量获取用户基本信息接口'
+- test:
+    name: '执行 获取access_token接口'
+    api: 'api/开始开发/获取access_token.yml'
+    variables:
+      - appid: 'wx116dfe67cf36b5db'
+      - secret: '4fa8e58c98667a8f5cdb1f397d0290d1'
+    extract:
+      token: content.access_token
+    validate:
+      - eq: [content.expires_in,7200]
+
+
+- test:
+    name: '执行  获取用户列表接口'
+    api: 'api/用户管理/获取用户列表/获取用户列表.yml'
+    variables:
+      token_id: $token
+      "user_list": [
+      {
+        "openid": 'otvxTs4dckWG7imySrJd6jSi0CWE',
+        "lang": "zh_CN"
+      },
+      {
+        "openid": 'o6_bmjrPTlm6_2sgVt7hMZOPfL2M',
+        "lang": "zh_CN"
+      }
+      ]
+    validate:
+      - eq: [content.language,'zh_CN']

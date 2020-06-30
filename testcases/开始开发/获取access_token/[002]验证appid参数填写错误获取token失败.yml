@@ -1,0 +1,10 @@
+- config:
+    name: '[002]验证appid参数填写错误获取token失败'
+- test:
+    name: '执行 获取access_token'
+    api: 'api/开始开发/获取access_token.yml'
+    variables:
+      - appid: 'fe67cf36b5db'
+      - secret: '4fa8e58c98667a8f5cdb1f397d0290d1'
+    validate:
+      - eq: [content.errcode,40013]

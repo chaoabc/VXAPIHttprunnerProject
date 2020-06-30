@@ -1,0 +1,9 @@
+name: '获取公众号已创建的标签'
+base_url: ${ENV(URL)}
+request:
+  url: '/cgi-bin/tags/get'
+  method: 'GET'
+  params:
+    access_token: $token_id
+validate:
+  - eq: ['status_code',200]

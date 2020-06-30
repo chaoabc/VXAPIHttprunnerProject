@@ -1,0 +1,25 @@
+- config:
+    name: '[003]验证传入非法的openid批量为用户取消标签失败'
+- test:
+    name: '执行 获取access_token接口'
+    api: 'api/开始开发/获取access_token.yml'
+    variables:
+      - appid: 'wx116dfe67cf36b5db'
+      - secret: '4fa8e58c98667a8f5cdb1f397d0290d1'
+    extract:
+      token: content.access_token
+    validate:
+      - eq: [content.expires_in,7200]
+
+
+- test:
+    name: '执行  批量为用户取消标签接口'
+    api: 'api/用户管理/用户标签管理/用户管理/批量为用户取消标签.yml'
+    variables:
+      token_id: $token
+      openid_list: [
+        'ocY0',
+        'ocYxcuBt0m@@Z7tGAHPnUaOW7Y'   ]
+      tagid: 134
+    validate:
+      - eq: [content.errcode,40003]

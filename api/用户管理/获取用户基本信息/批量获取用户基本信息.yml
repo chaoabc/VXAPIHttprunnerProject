@@ -1,0 +1,22 @@
+name: '批量获取用户基本信息'
+base_url: ${ENV(URL)}
+request:
+  url: '/cgi-bin/user/info/batchget'
+  method: 'POST'
+  params:
+    access_token: $token_id
+  json:
+    {
+      "user_list": [
+      {
+        "openid": $openid_01,
+        "lang": "zh_CN"
+      },
+      {
+        "openid": $openid_02,
+        "lang": "zh_CN"
+      }
+      ]
+    }
+validate:
+  - eq: ['status_code',200]

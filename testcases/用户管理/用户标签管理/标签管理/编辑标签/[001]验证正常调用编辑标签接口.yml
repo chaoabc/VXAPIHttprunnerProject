@@ -1,0 +1,23 @@
+- config:
+    name: '[001]验证正常调用编辑标签接口'
+- test:
+    name: '执行 获取access_token接口'
+    api: 'api/开始开发/获取access_token.yml'
+    variables:
+      - appid: 'wx116dfe67cf36b5db'
+      - secret: '4fa8e58c98667a8f5cdb1f397d0290d1'
+    extract:
+      token: content.access_token
+    validate:
+      - eq: [content.expires_in,7200]
+
+
+- test:
+    name: '执行 编辑标签接口'
+    api: 'api/用户管理/用户标签管理/标签管理/编辑标签.yml'
+    variables:
+      token_id: $token
+      tag_id: '102'
+      tag_name: 'chaoge深圳'
+    validate:
+      - eq: [content.errcode,0]

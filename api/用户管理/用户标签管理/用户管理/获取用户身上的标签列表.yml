@@ -1,0 +1,11 @@
+name: '获取用户身上的标签列表'
+base_url: ${ENV(URL)}
+request:
+  url: '/cgi-bin/tags/getidlist'
+  method: 'POST'
+  params:
+    access_token: $token_id
+  json:
+    {   "openid": $openid_01 }
+validate:
+  - eq: ['status_code',200]
